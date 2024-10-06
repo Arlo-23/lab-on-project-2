@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Price Viewer</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #2c2c2c;
+            color: #f8f9fa;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-control,
+        .btn {
+            border-radius: 25px;
+        }
+
+        .card {
+            background-color: #343a40;
+            border: none;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+
+        .card-title {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .error-message {
+            color: #dc3545;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Stock Price Viewer</h1>
+        <form method="POST">
+            <div class="input-group mb-3">
+                <input type="text" name="stock_symbol" class="form-control" placeholder="Enter stock symbol" required>
+                <div class="input-group-append">
+                    <select name="currency" class="form-control">
+                        <option value="INR">INR</option>
+                        <option value="EUR">EUR</option>
+                        <option value="GBP">GBP</option>
+                        <option value="JPY">JPY</option>
+                        <option value="AUD">AUD</option>
+                        <!-- Add more currencies as needed -->
+                    </select>
+                </div>
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">Get Stock Data</button>
+                </div>
+            </div>
+        </form>
+
+        {% if error %}
+        <p class="error-message">{{ error }}</p>
+        {% endif %}
+        {% for plot_div in plot_divs %}
+        <div class="card">
+            <div class="card-body">
+                <div>{{ plot_div|safe }}</div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
